@@ -16,7 +16,7 @@ export default function HomePage() {
 
   return (
     <SplitLayout>
-      <SplitCol width={200} maxWidth={200}>
+      <SplitCol width={200} maxWidth={200} autoSpaced>
         <Panel>
           <Group>
             <Cell onClick={() => setPanel("1")}>Задание 1</Cell>
