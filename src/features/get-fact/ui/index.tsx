@@ -3,11 +3,12 @@ import {
   Button,
   FormItem,
   FormLayoutGroup,
-  Input,
   Spinner,
   Div,
+  Textarea,
 } from "@vkontakte/vkui";
 import fetchFact from "../api";
+import { useEffect, useRef } from "react";
 
 export default function GetFact() {
   const query = useQuery({
@@ -16,12 +17,24 @@ export default function GetFact() {
     enabled: false,
   });
 
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (query.data && inputRef.current) {
+      const index = query.data.indexOf(" ");
+      inputRef.current.focus();
+      inputRef.current.selectionStart = inputRef.current.selectionEnd =
+        index !== undefined && index !== -1 ? index : query.data.length;
+    }
+  }, [query.data]);
+
   return (
     <FormLayoutGroup>
       <Button
         size="l"
         style={{ display: "block", marginInline: "auto" }}
         onClick={() => query.refetch()}
+        disabled={query.isFetching}
       >
         Получить факт
       </Button>
@@ -31,7 +44,7 @@ export default function GetFact() {
         </Div>
       ) : (
         <FormItem>
-          <Input defaultValue={query.data} />
+          <Textarea defaultValue={query.data} getRef={inputRef} />
         </FormItem>
       )}
     </FormLayoutGroup>

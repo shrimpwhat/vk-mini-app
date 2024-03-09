@@ -9,7 +9,7 @@ import {
 import { AdaptivityProvider, ConfigProvider, AppRoot } from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
 
-import { transformVKBridgeAdaptivity } from "./utils";
+import { transformVKBridgeAdaptivity } from "./lib";
 import { App } from "./App";
 
 export const AppConfig = () => {
