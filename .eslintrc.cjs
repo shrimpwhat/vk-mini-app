@@ -15,5 +15,7 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
+    "@tanstack/query/exhaustive-deps": ["off"],
+    "react-hooks/exhaustive-deps": ["off"],
   },
 };

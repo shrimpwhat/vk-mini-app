@@ -1,6 +1,10 @@
-const fetchPredictedAge = async (name: string): Promise<number> => {
-  const response = await fetch(`https://api.agify.io?name=${name}`);
-  const data = await response.json();
+import axios from "axios";
+
+const fetchPredictedAge = async (name: string, signal: AbortSignal): Promise<number> => {
+  const { data } = await axios.get(
+    `https://api.agify.io?name=${name}`, {
+    signal
+  })
   return data.age;
 }
 

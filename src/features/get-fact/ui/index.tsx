@@ -17,13 +17,13 @@ export default function GetFact() {
     enabled: false,
   });
 
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const outputRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    if (query.data && inputRef.current) {
+    if (query.data && outputRef.current) {
       const index = query.data.indexOf(" ");
-      inputRef.current.focus();
-      inputRef.current.selectionStart = inputRef.current.selectionEnd =
+      outputRef.current.focus();
+      outputRef.current.selectionStart = outputRef.current.selectionEnd =
         index !== undefined && index !== -1 ? index : query.data.length;
     }
   }, [query.data]);
@@ -44,7 +44,7 @@ export default function GetFact() {
         </Div>
       ) : (
         <FormItem>
-          <Textarea defaultValue={query.data} getRef={inputRef} />
+          <Textarea defaultValue={query.data} getRef={outputRef} />
         </FormItem>
       )}
     </FormLayoutGroup>
